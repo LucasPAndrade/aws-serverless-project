@@ -6,7 +6,7 @@ const AWS = require("aws-sdk")
 const insertItem = async (event) => {
     
     const {item} = JSON.parse(event.body)
-    const createdAt = new Date().toISOstring();
+    const createdAt = new Date().toISOString();
     const id = v4()
 
     const ddb = new AWS.DynamoDB.DocumentClient();
@@ -18,12 +18,10 @@ const insertItem = async (event) => {
         itemStatus: false
     }
 
-    await ddb.put(
-        {
+    await ddb.put({
             TableName: "ItemTableNew",
             Item: newItem
-        }
-    )
+        }).promise()
     
     return {
         statusCode: 200,
