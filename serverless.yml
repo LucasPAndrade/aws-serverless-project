@@ -20,18 +20,36 @@ provider:
 
 
 functions:
-  api:
-    handler: src/index.handler
-    events:
-      - httpApi:
-          path: /
-          method: get
+  # api:
+  #   handler: src/index.handler
+  #   events:
+  #     - httpApi:
+  #         path: /
+  #         method: get
   insertItem:
     handler: src/insertItem.handler
     events:
       - http:
           path: /item
           method: post
+  fetchItems:
+    handler: src/fetchItems.handler
+    events:
+      - http:
+          path: /items
+          method: get
+  fetchItem:
+    handler: src/fetchItem.handler
+    events:
+      - http:
+          path: /items/{id}
+          method: get
+  updateItem:
+    handler: src/updateItem.handler
+    events:
+      - http:
+          path: /items/{id}
+          method: put
 
 resources:
   Resources:
